@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unvoided SMP</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-    h1 { font-size: 3em; color: #2e86c1; }
-    p { font-size: 1.2em; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unvoided SMP Minecraft Server</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    font-family: 'Minecraftia', Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+    margin: 0;
+  }
+  h1 {
+    font-size: 3em;
+    margin-bottom: 0.2em;
+    text-shadow: 2px 2px 4px #000;
+  }
+  .server-ip {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+  }
+  .info {
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    text-shadow: 1px 1px 2px #222;
+  }
+  .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    text-align: center;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px #2e7d32;
+    display: inline-block;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+  }
+  .button:hover {
+    background-color: #388e3c;
+  }
+  .status {
+    margin-top: 1em;
+    font-size: 1.1em;
+    font-style: italic;
+    text-shadow: 1px 1px 1px #111;
+  }
+</style>
 </head>
 <body>
-  <h1>Welcome to Unvoided SMP!</h1>
-  <p>Server IP: <strong>play.unvoidedsmp.net</strong></p>
-  <p>Come explore, build, and survive with us!</p>
+  <h1>Welcome to Unvoided SMP</h1>
+  <div class="server-ip">Server IP: <span>play.unvoidedsmp.net</span></div>
+  <div class="info">Come explore, build, and survive with us!</div>
+  
+  <a href="https://discord.gg/YOUR_DISCORD_INVITE" target="_blank" class="button">Join our Discord</a>
+  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="button">How to Join (YouTube)</a>
+
+  <div class="status" id="status">Loading server status...</div>
+
+  <script>
+    // Simple placeholder for server status; you can replace with real API if available
+    // For now, just fake "Online" status after 2 seconds
+    setTimeout(() => {
+      document.getElementById('status').textContent = 'Server Status: Online — 12 players online';
+    }, 2000);
+  </script>
 </body>
 </html>
