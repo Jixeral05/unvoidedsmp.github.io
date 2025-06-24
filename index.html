@@ -1,335 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UnVoidedSMP | Space Portfolio & Minecraft Server</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@400;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jixeral | Cosmic Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto:wght@400;700&display=swap');
 
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    background: #000;
-    overflow-x: hidden;
-    color: #ddd;
-    position: relative;
-  }
-
-  /* Canvas covers entire screen */
-  #starfield {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    background: radial-gradient(ellipse at center, #000000 0%, #0a001f 70%, #1a002f 100%);
-  }
-
-  /* Banner section */
-  #banner {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    background: url('https://imgur.com/a/0WT3Swe') no-repeat center center/cover;
-    filter: brightness(0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #bb00ff;
-    text-shadow: 0 0 12px #bb00ff, 0 0 30px #8000ff;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    user-select: none;
-    z-index: 1;
-  }
-
-  #banner::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(187,0,255,0.3), transparent 80%);
-    pointer-events: none;
-  }
-
-  #banner > span {
-    position: relative;
-    z-index: 2;
-  }
-
-  /* Content container */
-  #content {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 2rem auto 4rem;
-    padding: 0 1rem;
-  }
-
-  header h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 4rem;
-    margin-bottom: 0.3rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #bb00ff;
-    text-shadow: 0 0 8px #bb00ff, 0 0 20px #8000ff;
-    text-align: center;
-  }
-
-  header p {
-    font-size: 1.3rem;
-    color: #a594cc;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    font-weight: 500;
-    text-align: center;
-  }
-
-  section {
-    background: rgba(30, 0, 40, 0.85);
-    padding: 2.5rem 3rem;
-    margin-bottom: 3rem;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(187, 0, 255, 0.6);
-    border: 1px solid #bb00ff;
-    backdrop-filter: blur(8px);
-    transition: box-shadow 0.3s ease;
-    text-align: left;
-  }
-  section:hover {
-    box-shadow: 0 0 35px rgba(187, 0, 255, 0.9);
-  }
-
-  section h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.3rem;
-    margin-bottom: 1.2rem;
-    color: #bb00ff;
-    border-bottom: 3px solid #bb00ff;
-    padding-bottom: 0.6rem;
-  }
-
-  section p, section a {
-    font-size: 1.15rem;
-    color: #ccc;
-    line-height: 1.7;
-  }
-
-  a {
-    color: #bb00ff;
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  .button {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 1rem 3rem;
-    background: linear-gradient(45deg, #bb00ff, #8000ff);
-    color: #f2e9ff;
-    font-weight: 800;
-    font-size: 1.25rem;
-    border-radius: 50px;
-    cursor: pointer;
-    text-decoration: none;
-    box-shadow: 0 6px 25px rgba(187, 0, 255, 0.8);
-    transition: background 0.4s ease, transform 0.25s ease;
-    user-select: none;
-  }
-
-  .button:hover {
-    background: linear-gradient(45deg, #d733ff, #a600ff);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(215, 51, 255, 0.95);
-  }
-
-  /* Minecraft Section Details */
-  .minecraft-info p {
-    margin: 0.5rem 0;
-    font-weight: 600;
-  }
-
-  /* How to Join & Admins/Members layout */
-  #how-to-join {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  #how-to-join .left-video {
-    flex: 1 1 300px;
-  }
-  #how-to-join .left-video video {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(187, 0, 255, 0.8);
-  }
-  #how-to-join .content {
-    flex: 2 1 400px;
-    color: #ddd;
-  }
-  #admins-members {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  #admins-members .right-images {
-    flex: 1 1 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  #admins-members .right-images img {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 0 25px rgba(187, 0, 255, 0.8);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    #how-to-join {
-      flex-direction: column;
+    * {
+      box-sizing: border-box;
     }
-    #admins-members {
-      flex-direction: column;
-    }
-  }
 
-  @media (max-width: 600px) {
-    header h1 {
-      font-size: 2.8rem;
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #ddd;
+      overflow-x: hidden;
     }
+
+    #starfield {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: radial-gradient(ellipse at center, #000 0%, #0a001f 70%, #1a002f 100%);
+    }
+
+    #banner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background: url('https://i.imgur.com/ejmKm6F.jpg') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #bb00ff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      text-shadow: 0 0 15px #bb00ff;
+      z-index: 1;
+    }
+
+    #content {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #bb00ff;
+      text-shadow: 0 0 10px #8000ff;
+    }
+
     section {
-      padding: 2rem 2rem;
+      background: rgba(30, 0, 40, 0.85);
+      border: 1px solid #bb00ff;
+      box-shadow: 0 0 20px rgba(187, 0, 255, 0.6);
+      padding: 2rem;
       margin-bottom: 2rem;
+      border-radius: 20px;
+      animation: fadeIn 1.2s ease;
     }
-  }
-</style>
+
+    a {
+      color: #bb00ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin-top: 1rem;
+      background: linear-gradient(45deg, #bb00ff, #8000ff);
+      color: white;
+      font-weight: bold;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(187, 0, 255, 0.7);
+      transition: transform 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .video-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .video-section video {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(187, 0, 255, 0.6);
+    }
+
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .image-row img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(187, 0, 255, 0.7);
+      animation: slideInRight 1s ease forwards;
+    }
+
+    .image-row .text {
+      flex: 1;
+      max-width: 500px;
+      font-size: 1.2rem;
+      animation: slideInLeft 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .image-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .image-row .text {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <canvas id="starfield"></canvas>
 
-<div id="banner"><span>Jixeral's Voided Realm</span></div>
+<div id="banner">
+  <span>Jixeral's VOIDED REALM</span>
+</div>
 
 <div id="content">
 
-  <header>
-    <h1>Jixeral</h1>
-    <p>Exploring the cosmos of game development and building stellar Minecraft communities.</p>
-  </header>
+  <section>
+    <h1>About Me</h1>
+    <p>Hey! I'm <strong>Jixeral</strong>. I love creating games, managing Minecraft servers, and exploring space & black holes. Check out my work below and come hang out in our cosmic community.</p>
+    <p>🎮 <a href="https://jixeral.itch.io" target="_blank">My Itch.io Page</a></p>
+  </section>
 
   <section>
-    <h2>About Me</h2>
-    <p>Greetings! I'm <strong>Jixeral</strong>, a creator fueled by fascination with black holes, space, and gaming. I craft indie games and host Minecraft servers where players can explore and connect in a universe of fun.</p>
-    <p>Discover my creations on <a href="https://jixeral.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
-  </section>
-
-  <section id="how-to-join">
-    <div class="left-video">
+    <h2>How to Join</h2>
+    <div class="video-section">
       <video controls>
-        <source src="your-video-file-or-link.mp4" type="video/mp4" />
-        Sorry, your browser doesn't support embedded videos.
+        <source src="your-video-file.mp4" type="video/mp4">
+        Your browser does not support the video tag.
       </video>
-    </div>
-    <div class="content">
-      <h2>How to Join</h2>
-      <p>Jump into our Minecraft server and explore the universe! Join our Discord community to chat, get updates, and connect with fellow players.</p>
-      <p>Server IP: <code>UnVoidedSMP.net</code></p>
-      <p>Discord: <a href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Join our Discord</a></p>
-      <a class="button" href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Join Now</a>
-    </div>
-  </section>
-
-  <section id="admins-members">
-    <div class="right-images">
-      <img src="https://i.imgur.com/8hPq9lN.png" alt="Admins Image" />
-      <img src="https://i.imgur.com/x4DlzYr.png" alt="Members Image" />
+      <div>
+        <p>🪐 Join our server and connect with players in an awesome universe!</p>
+        <p><strong>IP:</strong> <code>UnVoidedSMP.net</code></p>
+        <p><strong>Discord:</strong> <a href="https://discord.gg/R4UanWVVgV" target="_blank">Click here to join</a></p>
+        <a class="button" href="https://discord.gg/R4UanWVVgV" target="_blank">Join Now</a>
+      </div>
     </div>
   </section>
 
-  <section class="minecraft-info">
-    <h2>Minecraft Server</h2>
-    <p>🚀 <strong>Server IP:</strong> <code>UnVoidedSMP.net</code></p>
-    <p>🌌 <strong>Discord:</strong> <a href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Join our Discord</a></p>
-    <a class="button" href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Enter the Minecraft Universe</a>
+  <section class="image-row">
+    <div class="text">
+      <h2>Admins</h2>
+      <p>If you need help, come to one of us</p>
+    </div>
+    <img src="https://i.imgur.com/8hPq9lN.png" alt="Admins">
+  </section>
+
+  <section class="image-row">
+    <div class="text">
+      <h2>Community</h2>
+      <p>We love our community no matter what</p>
+    </div>
+    <img src="https://i.imgur.com/x4DlzYr.png" alt="Community">
+  </section>
+
+  <section>
+    <h2>Quick Info</h2>
+    <p>🌌 <strong>Server IP:</strong> <code>UnVoidedSMP.net</code></p>
+    <p>💬 <strong>Discord:</strong> <a href="https://discord.gg/R4UanWVVgV" target="_blank">Join here</a></p>
+    <a class="button" href="https://discord.gg/R4UanWVVgV" target="_blank">Enter the Galaxy</a>
   </section>
 
 </div>
 
 <script>
-// Starfield animation script
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-let width, height;
-let stars = [];
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let width, height;
 
-function init() {
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  }
+
+  function createStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.5,
+        alpha: Math.random(),
+        delta: 0.005 + Math.random() * 0.02
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let star of stars) {
+      star.alpha += star.delta;
+      if (star.alpha <= 0 || star.alpha >= 1) star.delta = -star.delta;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(187, 0, 255, ${star.alpha})`;
+      ctx.shadowColor = '#bb00ff';
+      ctx.shadowBlur = 10;
+      ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    createStars(150);
+  });
+
   resize();
   createStars(150);
   animate();
-}
-
-function resize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width * devicePixelRatio;
-  canvas.height = height * devicePixelRatio;
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.scale(devicePixelRatio, devicePixelRatio);
-}
-
-function createStars(count) {
-  stars = [];
-  for(let i = 0; i < count; i++) {
-    stars.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 1.2 + 0.2,
-      alpha: Math.random(),
-      alphaChange: 0.005 + Math.random() * 0.01
-    });
-  }
-}
-
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-  stars.forEach(star => {
-    star.alpha += star.alphaChange;
-    if(star.alpha <= 0 || star.alpha >= 1) star.alphaChange = -star.alphaChange;
-    ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(187, 0, 255, ${star.alpha})`;
-    ctx.shadowColor = '#bb00ff';
-    ctx.shadowBlur = 6;
-    ctx.fill();
-  });
-  requestAnimationFrame(animate);
-}
-
-window.addEventListener('resize', () => {
-  resize();
-  createStars(150);
-});
-
-init();
 </script>
 
 </body>
