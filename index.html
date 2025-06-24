@@ -3,40 +3,59 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Your Name | Portfolio & Minecraft Server</title>
+<title>Your Name | Space Portfolio & Minecraft Server</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@400;700&display=swap');
+
   /* Reset & base */
   * {
     box-sizing: border-box;
   }
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1f1f2e 0%, #28293d 100%);
-    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(ellipse at center, #000000 0%, #0a001f 70%, #1a002f 100%);
+    color: #ddd;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Starfield effect - subtle */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://i.imgur.com/8kA1rjs.png') repeat;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
   }
 
   header {
-    padding: 3rem 1rem 2rem;
+    padding: 4rem 1rem 2rem;
     text-align: center;
     max-width: 900px;
+    z-index: 1;
   }
 
   header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 0.2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    margin-bottom: 0.3rem;
     font-weight: 900;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: #bb00ff;
+    text-shadow: 0 0 8px #bb00ff, 0 0 20px #8000ff;
   }
 
   header p {
-    font-size: 1.2rem;
-    color: #ccc;
+    font-size: 1.3rem;
+    color: #a594cc;
     max-width: 600px;
     margin: 0 auto;
     font-weight: 500;
@@ -45,34 +64,43 @@
   main {
     width: 100%;
     max-width: 900px;
-    padding: 2rem 1rem 3rem;
+    padding: 2rem 1rem 4rem;
+    z-index: 1;
   }
 
   section {
-    background: rgba(40, 41, 61, 0.75);
-    padding: 2rem 2.5rem;
-    margin-bottom: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 208, 255, 0.3);
+    background: rgba(30, 0, 40, 0.85);
+    padding: 2.5rem 3rem;
+    margin-bottom: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(187, 0, 255, 0.6);
+    border: 1px solid #bb00ff;
+    backdrop-filter: blur(8px);
+    transition: box-shadow 0.3s ease;
+  }
+  section:hover {
+    box-shadow: 0 0 35px rgba(187, 0, 255, 0.9);
   }
 
   section h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #00d0ff;
-    border-bottom: 2px solid #00d0ff;
-    padding-bottom: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.3rem;
+    margin-bottom: 1.2rem;
+    color: #bb00ff;
+    border-bottom: 3px solid #bb00ff;
+    padding-bottom: 0.6rem;
   }
 
   section p, section a {
-    font-size: 1.1rem;
-    color: #ddd;
-    line-height: 1.6;
+    font-size: 1.15rem;
+    color: #ccc;
+    line-height: 1.7;
   }
 
   a {
-    color: #00d0ff;
+    color: #bb00ff;
     text-decoration: none;
+    font-weight: 600;
   }
 
   a:hover {
@@ -81,37 +109,40 @@
 
   .button {
     display: inline-block;
-    margin-top: 1.5rem;
-    padding: 1rem 2.5rem;
-    background: #00d0ff;
-    color: #0a0a0a;
-    font-weight: 700;
-    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding: 1rem 3rem;
+    background: linear-gradient(45deg, #bb00ff, #8000ff);
+    color: #f2e9ff;
+    font-weight: 800;
+    font-size: 1.25rem;
     border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 5px 15px rgba(0, 208, 255, 0.6);
-    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 25px rgba(187, 0, 255, 0.8);
+    transition: background 0.4s ease, transform 0.25s ease;
+    user-select: none;
   }
 
   .button:hover {
-    background: #00a6cc;
-    transform: translateY(-3px);
+    background: linear-gradient(45deg, #d733ff, #a600ff);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(215, 51, 255, 0.95);
   }
 
   /* Minecraft Section Details */
   .minecraft-info p {
-    margin: 0.4rem 0;
+    margin: 0.5rem 0;
     font-weight: 600;
   }
 
   /* Responsive */
   @media (max-width: 600px) {
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
     section {
-      padding: 1.5rem 1.8rem;
+      padding: 2rem 2rem;
+      margin-bottom: 2rem;
     }
   }
 </style>
@@ -120,21 +151,21 @@
 
 <header>
   <h1>YourName</h1>
-  <p>Game developer, Minecraft server host, and creative enthusiast. Building fun experiences and communities!</p>
+  <p>Exploring the cosmos of game development and building stellar Minecraft communities.</p>
 </header>
 
 <main>
   <section>
     <h2>About Me</h2>
-    <p>Hello! I'm YourName, passionate about games and creative tech. I enjoy making indie games and running Minecraft servers where people have fun and connect.</p>
-    <p>Explore my projects on <a href="https://yourusername.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
+    <p>Greetings! I'm <strong>YourName</strong>, a creator fueled by fascination with black holes, space, and gaming. I craft indie games and host Minecraft servers where players can explore and connect in a universe of fun.</p>
+    <p>Discover my creations on <a href="https://yourusername.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
   </section>
 
   <section class="minecraft-info">
     <h2>Minecraft Server</h2>
-    <p>🎮 <strong>Server IP:</strong> play.yourserver.com</p>
-    <p>💬 <strong>Discord:</strong> <a href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join our Discord</a></p>
-    <a class="button" href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join Minecraft Server</a>
+    <p>🚀 <strong>Server IP:</strong> <code>play.yourserver.com</code></p>
+    <p>🌌 <strong>Discord:</strong> <a href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join our Discord</a></p>
+    <a class="button" href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Enter the Minecraft Universe</a>
   </section>
 </main>
 
