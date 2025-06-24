@@ -163,17 +163,17 @@
     font-weight: 600;
   }
 
-  /* Layout for How to Join & Admins/Members */
+  /* How to Join & Admins/Members layout */
   #how-to-join {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
     align-items: center;
   }
-  #how-to-join .left-image {
+  #how-to-join .left-video {
     flex: 1 1 300px;
   }
-  #how-to-join .left-image img {
+  #how-to-join .left-video video {
     width: 100%;
     border-radius: 16px;
     box-shadow: 0 0 25px rgba(187, 0, 255, 0.8);
@@ -237,12 +237,15 @@
   <section>
     <h2>About Me</h2>
     <p>Greetings! I'm <strong>YourName</strong>, a creator fueled by fascination with black holes, space, and gaming. I craft indie games and host Minecraft servers where players can explore and connect in a universe of fun.</p>
-    <p>Discover my creations on <a href="https://yourusername.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
+    <p>Discover my creations on <a href="https://jixeral.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
   </section>
 
   <section id="how-to-join">
-    <div class="left-image">
-      <img src="https://i.imgur.com/wZvO84Q.png" alt="How to Join Image" />
+    <div class="left-video">
+      <video controls>
+        <source src="your-video-file-or-link.mp4" type="video/mp4" />
+        Sorry, your browser doesn't support embedded videos.
+      </video>
     </div>
     <div class="content">
       <h2>How to Join</h2>
@@ -262,10 +265,11 @@
 
   <section class="minecraft-info">
     <h2>Minecraft Server</h2>
-    <p>🚀 <strong>Server IP:</strong> <code>play.yourserver.com</code></p>
+    <p>🚀 <strong>Server IP:</strong> <code>UnVoidedSMP.net</code></p>
     <p>🌌 <strong>Discord:</strong> <a href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Join our Discord</a></p>
     <a class="button" href="https://discord.gg/R4UanWVVgV" target="_blank" rel="noopener">Enter the Minecraft Universe</a>
   </section>
+
 </div>
 
 <script>
@@ -294,35 +298,29 @@ function resize() {
 
 function createStars(count) {
   stars = [];
-  for (let i = 0; i < count; i++) {
+  for(let i = 0; i < count; i++) {
     stars.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.1 + 0.3,
-      speed: Math.random() * 0.5 + 0.1,
-      opacity: Math.random() * 0.8 + 0.2,
-      twinkle: Math.random() * 0.05 + 0.005
+      radius: Math.random() * 1.2 + 0.2,
+      alpha: Math.random(),
+      alphaChange: 0.005 + Math.random() * 0.01
     });
   }
 }
 
 function animate() {
   ctx.clearRect(0, 0, width, height);
-  for (const star of stars) {
-    star.y -= star.speed;
-    if (star.y < 0) star.y = height;
-
-    // twinkle effect
-    star.opacity += star.twinkle;
-    if (star.opacity > 1 || star.opacity < 0.3) star.twinkle = -star.twinkle;
-
+  stars.forEach(star => {
+    star.alpha += star.alphaChange;
+    if(star.alpha <= 0 || star.alpha >= 1) star.alphaChange = -star.alphaChange;
     ctx.beginPath();
-    ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(187, 0, 255, ${star.opacity.toFixed(2)})`; // purple star color
-    ctx.shadowColor = `rgba(187, 0, 255, ${star.opacity.toFixed(2)})`;
-    ctx.shadowBlur = 8;
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(187, 0, 255, ${star.alpha})`;
+    ctx.shadowColor = '#bb00ff';
+    ctx.shadowBlur = 6;
     ctx.fill();
-  }
+  });
   requestAnimationFrame(animate);
 }
 
