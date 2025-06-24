@@ -11,35 +11,35 @@
   * {
     box-sizing: border-box;
   }
-  body {
+  body, html {
     margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: 'Roboto', sans-serif;
-    background: radial-gradient(ellipse at center, #000000 0%, #0a001f 70%, #1a002f 100%);
-    color: #ddd;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: #000;
     overflow-x: hidden;
+    color: #ddd;
     position: relative;
   }
 
-  /* Starfield effect - subtle */
-  body::before {
-    content: "";
+  /* Canvas covers entire screen */
+  #starfield {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: url('https://i.imgur.com/8kA1rjs.png') repeat;
-    opacity: 0.1;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 0;
-    pointer-events: none;
+    background: radial-gradient(ellipse at center, #000000 0%, #0a001f 70%, #1a002f 100%);
   }
 
-  header {
-    padding: 4rem 1rem 2rem;
-    text-align: center;
-    max-width: 900px;
+  /* Content container */
+  #content {
+    position: relative;
     z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1rem 4rem;
+    text-align: center;
   }
 
   header h1 {
@@ -57,15 +57,8 @@
     font-size: 1.3rem;
     color: #a594cc;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
     font-weight: 500;
-  }
-
-  main {
-    width: 100%;
-    max-width: 900px;
-    padding: 2rem 1rem 4rem;
-    z-index: 1;
   }
 
   section {
@@ -77,6 +70,7 @@
     border: 1px solid #bb00ff;
     backdrop-filter: blur(8px);
     transition: box-shadow 0.3s ease;
+    text-align: left;
   }
   section:hover {
     box-shadow: 0 0 35px rgba(187, 0, 255, 0.9);
@@ -149,12 +143,14 @@
 </head>
 <body>
 
-<header>
-  <h1>YourName</h1>
-  <p>Exploring the cosmos of game development and building stellar Minecraft communities.</p>
-</header>
+<canvas id="starfield"></canvas>
 
-<main>
+<div id="content">
+  <header>
+    <h1>YourName</h1>
+    <p>Exploring the cosmos of game development and building stellar Minecraft communities.</p>
+  </header>
+
   <section>
     <h2>About Me</h2>
     <p>Greetings! I'm <strong>YourName</strong>, a creator fueled by fascination with black holes, space, and gaming. I craft indie games and host Minecraft servers where players can explore and connect in a universe of fun.</p>
@@ -167,7 +163,73 @@
     <p>🌌 <strong>Discord:</strong> <a href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join our Discord</a></p>
     <a class="button" href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Enter the Minecraft Universe</a>
   </section>
-</main>
+</div>
+
+<script>
+// Starfield animation script
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let width, height;
+let stars = [];
+
+function init() {
+  resize();
+  createStars(150);
+  animate();
+}
+
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * devicePixelRatio;
+  canvas.height = height * devicePixelRatio;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
+
+function createStars(count) {
+  stars = [];
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.1 + 0.3,
+      speed: Math.random() * 0.5 + 0.1,
+      opacity: Math.random() * 0.8 + 0.2,
+      twinkle: Math.random() * 0.05 + 0.005
+    });
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  for (const star of stars) {
+    star.y -= star.speed;
+    if (star.y < 0) star.y = height;
+
+    // twinkle effect
+    star.opacity += star.twinkle;
+    if (star.opacity > 1 || star.opacity < 0.3) star.twinkle = -star.twinkle;
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.radius, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(187, 0, 255, ${star.opacity.toFixed(2)})`; // purple star color
+    ctx.shadowColor = `rgba(187, 0, 255, ${star.opacity.toFixed(2)})`;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+  }
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+  resize();
+  createStars(150);
+});
+
+init();
+</script>
 
 </body>
 </html>
