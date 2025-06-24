@@ -3,74 +3,140 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Unvoided SMP Minecraft Server</title>
+<title>Your Name | Portfolio & Minecraft Server</title>
 <style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
   body {
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-    font-family: 'Minecraftia', Arial, sans-serif;
-    color: #fff;
-    text-align: center;
-    padding: 50px 20px;
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1f1f2e 0%, #28293d 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  h1 {
-    font-size: 3em;
-    margin-bottom: 0.2em;
-    text-shadow: 2px 2px 4px #000;
-  }
-  .server-ip {
-    font-size: 1.5em;
-    margin-bottom: 1em;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #000;
-  }
-  .info {
-    font-size: 1.2em;
-    margin-bottom: 2em;
-    text-shadow: 1px 1px 2px #222;
-  }
-  .button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 14px 28px;
+
+  header {
+    padding: 3rem 1rem 2rem;
     text-align: center;
-    font-size: 1.2em;
-    border-radius: 8px;
+    max-width: 900px;
+  }
+
+  header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.2rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  header p {
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  main {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem 1rem 3rem;
+  }
+
+  section {
+    background: rgba(40, 41, 61, 0.75);
+    padding: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 208, 255, 0.3);
+  }
+
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00d0ff;
+    border-bottom: 2px solid #00d0ff;
+    padding-bottom: 0.5rem;
+  }
+
+  section p, section a {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #00d0ff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 1rem 2.5rem;
+    background: #00d0ff;
+    color: #0a0a0a;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
-    box-shadow: 0 4px #2e7d32;
-    display: inline-block;
-    margin: 0 10px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 208, 255, 0.6);
+    transition: background 0.3s ease, transform 0.2s ease;
   }
+
   .button:hover {
-    background-color: #388e3c;
+    background: #00a6cc;
+    transform: translateY(-3px);
   }
-  .status {
-    margin-top: 1em;
-    font-size: 1.1em;
-    font-style: italic;
-    text-shadow: 1px 1px 1px #111;
+
+  /* Minecraft Section Details */
+  .minecraft-info p {
+    margin: 0.4rem 0;
+    font-weight: 600;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header h1 {
+      font-size: 2.5rem;
+    }
+    section {
+      padding: 1.5rem 1.8rem;
+    }
   }
 </style>
 </head>
 <body>
-  <h1>Welcome to Unvoided SMP</h1>
-  <div class="server-ip">Server IP: <span>play.unvoidedsmp.net</span></div>
-  <div class="info">Come explore, build, and survive with us!</div>
-  
-  <a href="https://discord.gg/R4UanWVVgV" target="_blank" class="button">Join our Discord</a>
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="button">How to Join (YouTube)</a>
 
-  <div class="status" id="status">Loading server status...</div>
+<header>
+  <h1>YourName</h1>
+  <p>Game developer, Minecraft server host, and creative enthusiast. Building fun experiences and communities!</p>
+</header>
 
-  <script>
-    // Simple placeholder for server status; you can replace with real API if available
-    // For now, just fake "Online" status after 2 seconds
-    setTimeout(() => {
-      document.getElementById('status').textContent = 'Server Status: Online — 12 players online';
-    }, 2000);
-  </script>
+<main>
+  <section>
+    <h2>About Me</h2>
+    <p>Hello! I'm YourName, passionate about games and creative tech. I enjoy making indie games and running Minecraft servers where people have fun and connect.</p>
+    <p>Explore my projects on <a href="https://yourusername.itch.io" target="_blank" rel="noopener">Itch.io</a>.</p>
+  </section>
+
+  <section class="minecraft-info">
+    <h2>Minecraft Server</h2>
+    <p>🎮 <strong>Server IP:</strong> play.yourserver.com</p>
+    <p>💬 <strong>Discord:</strong> <a href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join our Discord</a></p>
+    <a class="button" href="https://discord.gg/YOURSERVER" target="_blank" rel="noopener">Join Minecraft Server</a>
+  </section>
+</main>
+
 </body>
 </html>
